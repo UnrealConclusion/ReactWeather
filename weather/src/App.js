@@ -1,25 +1,60 @@
-import logo from './logo.svg';
-import './App.css';
+import { Fragment } from "react";
+import './App.css'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="container">
+      <header className="header">
+        <Banner/>
+        <nav><NavBar className="navbar"/></nav>
       </header>
+      <main className="main">
+        <CurrentWeather/>
+        <FutureForcast/>
+      </main>
+      <footer><FooterBar/></footer>
     </div>
   );
 }
 
 export default App;
+
+function Banner() {
+  return (
+    <div className="banner">
+      
+    </div>
+  );
+}
+
+function NavBar() {
+  return (
+    <div className="navbar">
+      
+    </div>
+  );
+}
+
+function CurrentWeather() {
+  return (
+    <div className="weather">
+      
+    </div>
+  );
+}
+
+function FutureForcast() {
+  return (
+    <div className="forcast">
+      
+    </div>
+  );
+}
+
+function FooterBar() {
+  return (
+    <div className="footerbar">
+      
+    </div>
+  );
+}

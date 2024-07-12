@@ -1,18 +1,27 @@
-import { Fragment } from "react";
-import './App.css'
+import 'bootstrap/dist/css/bootstrap.css';
+import "./App.css"
 
 function App() {
   return (
-    <div className="container">
-      <header className="header">
+    <div className="container-fluid" style={{margin: "0"}}>
+      <div className="row">
         <Banner/>
-        <nav><NavBar className="navbar"/></nav>
-      </header>
-      <main className="main">
-        <CurrentWeather/>
-        <FutureForcast/>
-      </main>
-      <footer><FooterBar/></footer>
+      </div>
+      <div className="row">
+        <NavBar/>
+      </div>
+      <div className="row">
+        <div className="col-6 px-0">
+          <CurrentWeather/>
+        </div>
+        <div className="col-6 px-0">
+          <FutureForcast/>
+        </div>
+      </div>
+
+      <div className="row">
+        <FooterBar/>
+      </div>
     </div>
   );
 }

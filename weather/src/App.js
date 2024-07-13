@@ -1,26 +1,32 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import "./App.css"
+import NavBar from './navbar';
+import Banner from './banner';
 
 function App() {
   return (
-    <div className="container-fluid" style={{margin: "0"}}>
+    <div className="container-fluid background" style={{margin: "0"}}>
       <div className="row">
-        <Banner/>
+        <div className="col-12 px-0">
+          <Banner/>
+        </div>
       </div>
       <div className="row">
         <NavBar/>
       </div>
-      <div className="row">
-        <div className="col-6 px-0">
+      <div className="row card-row">
+        <div className="col-6">
           <CurrentWeather/>
         </div>
-        <div className="col-6 px-0">
+        <div className="col-6">
           <FutureForcast/>
         </div>
       </div>
-
       <div className="row">
         <FooterBar/>
+      </div>
+      <div className="row">
+        <Banner/>
       </div>
     </div>
   );
@@ -28,25 +34,10 @@ function App() {
 
 export default App;
 
-function Banner() {
-  return (
-    <div className="banner">
-      
-    </div>
-  );
-}
-
-function NavBar() {
-  return (
-    <div className="navbar">
-      
-    </div>
-  );
-}
 
 function CurrentWeather() {
   return (
-    <div className="weather">
+    <div className="weather card">
       
     </div>
   );
@@ -54,7 +45,7 @@ function CurrentWeather() {
 
 function FutureForcast() {
   return (
-    <div className="forcast">
+    <div className="forcast card">
       
     </div>
   );
@@ -63,7 +54,6 @@ function FutureForcast() {
 function FooterBar() {
   return (
     <div className="footerbar">
-      
     </div>
   );
 }

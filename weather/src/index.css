@@ -7,12 +7,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.navbar {
-  columns: red;
-  background-color: red;
-  width: 50;
-  height: 50;
-}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

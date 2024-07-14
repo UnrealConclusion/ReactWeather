@@ -20,18 +20,37 @@
 
 .navbar {
     background-color: #001D3D;
+    min-width: 300px;
     width: 100%;
-    height: 8vh;
+    min-height: 4em;
+    max-height: 8vh;
 }
 
 .weather {
+    min-width: 400px;
     width: 100%;
     height: 80vh;
+
+    .header {
+        text-align: center;
+        color: wheat;
+        margin: 1em;
+    }
+
+    .weather-main-row {
+        text-align: center;
+    }
+    .temperature-today {
+        font-size: 5em;
+        margin: 0;
+        color: wheat;
+    }
 }
 
-.forcast {
+.forecast {
+    min-width: 400px;
+    width: 100%;
     height: 80vh;
-
 }
 
 
@@ -41,4 +60,12 @@
     height: 8vh;
 }
 
+@media (max-width: 768px) {
+    .weather {
+        margin-top: 1em;
 
+    }
+    .forecast {
+        margin-top: 1em;
+    }    
+}

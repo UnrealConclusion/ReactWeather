@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import "./App.css"
 import NavBar from './navbar';
 import Banner from './banner';
+import CurrentWeather from './current_weather.js';
 import { useEffect } from 'react';
 
 import { today } from "./sampledata.js";
@@ -45,7 +46,19 @@ try {
       </div>
       <div className="row card-row">
         <div className="col-md-6 col-sm-12">
-          <CurrentWeather/>
+          <CurrentWeather 
+            date={new Date(today.dt * 1000)}
+            weather={today.weather[0].main}
+            description={today.weather[0].description}
+            iconID={today.weather[0].icon}
+            temperature={Math.round(today.main.temp)}
+            low={Math.round(today.main.temp_min)}
+            high={Math.round(today.main.temp_max)}
+            feelsLike={Math.round(today.main.feels_like)}
+            humidity={today.main.humidity}
+            windSpeed={today.wind.speed}
+            visibility={today.visibility}
+          />
         </div>
         <div className="col-md-6 col-sm-12">
           <FutureForecast/>
@@ -62,60 +75,6 @@ try {
 }
 
 export default App;
-
-
-function CurrentWeather() {
-  return (
-    <div className="weather card container-fluid d-flex flex-column justify-content-center">
-      <div className="row">
-        <div className="col-12">
-          <h2 className="header">Current Forecast</h2>
-        </div>
-      </div>
-      <div className="row weather-main-row">
-        <div className='col-6' style={{color: "wheat"}}>
-          <img src="https://openweathermap.org/img/wn/10d@2x.png" className="img-fluid" alt="..."></img>
-        </div>
-        <div className='col-6'>
-          <h1 className='temperature-today'>75°</h1>
-        </div>
-      </div>
-      <div className='row'>
-        <div className='col-12' style={{textAlign: 'center', color: 'wheat'}}>
-          <h1 style={{border: "solid", borderColor: "#003566", borderRadius: "25px"}}>Rain</h1>
-        </div>
-      </div>
-      <div className="row" style={{color: "wheat", textAlign: "center", marginTop: "1em"}}>
-        <div className='col-6'>
-          <h3>Low: 60</h3>
-        </div>
-        <div className='col-6'>
-          <h3>High: 82</h3>
-        </div>
-      </div>
-      <div className='row' style={{color: "wheat", textAlign: "center", marginTop: "1em"}}>
-        <div className='col-12' style={{textAlign: 'center', color: 'wheat'}}>
-          <h3>Feels Like 🤔 70°</h3>
-        </div>
-      </div>
-      <div className='row' style={{color: "wheat", textAlign: "center", marginTop: "1em"}}>
-        <div className='col-12' style={{textAlign: 'center', color: 'wheat'}}>
-          <h3>Humidity 😓 60</h3>
-        </div>
-      </div>
-      <div className='row' style={{color: "wheat", textAlign: "center", marginTop: "1em"}}>
-        <div className='col-12' style={{textAlign: 'center', color: 'wheat'}}>
-          <h3>Wind Speed 💨 60</h3>
-        </div>
-      </div>
-      <div className='row' style={{color: "wheat", textAlign: "center", marginTop: "1em"}}>
-        <div className='col-12' style={{textAlign: 'center', color: 'wheat'}}>
-          <h3>Visibility 🫣 60</h3>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 function FutureForecast() {
   return (

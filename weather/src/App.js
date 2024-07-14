@@ -78,7 +78,7 @@ export default App;
 
 function FutureForecast() {
   return (
-    <div className="forecast card container-fluid">
+    <div className="forecast card weather-card container-fluid">
       <div className="row">
         <div className="col-12" style={{color: "wheat", textAlign: "center", marginTop: "1em"}}>
           <h2 className="header">Future Forecast</h2>

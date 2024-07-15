@@ -17,7 +17,6 @@
     max-height: 8vh;
 }
 
-/* custom card CSS */
 .weather-card {
     background-color: #001D3D;
 
@@ -48,7 +47,39 @@
     padding-bottom: 5px;
 }
 
-/* ----- */
+.forecast-card {
+    background-color: #001D3D;
+
+    margin-top: 1em;
+    margin-bottom: 1em;
+
+    display: flex;
+    justify-content: center;
+    overflow: auto;
+    
+    min-width: 400px;
+    width: 100%;
+    height: 80vh;
+
+    color: wheat;
+    text-align: center;
+}
+
+.forecast-card h3 {
+    font-size: 1.5em;
+}
+
+.forecast-card-last-row {
+    margin-bottom: 1.5em;
+}
+
+
+.forecast-card-button-row {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
 .footerbar {
     background-color: #001D3D;
     width: 100%;
@@ -57,11 +88,5 @@
 
 /* Media Queries */
 @media (max-width: 768px) {
-    .weather {
-        margin-top: 1em;
 
-    }
-    .forecast {
-        margin-top: 1em;
-    }    
 }

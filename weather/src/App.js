@@ -1,11 +1,14 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import "./App.css"
-import NavBar from './navbar';
+
 import Banner from './banner';
+import NavBar from './navbar';
 import CurrentWeather from './current_weather.js';
+import FutureForecast from './future_forecast.js';
+
 import { useEffect } from 'react';
 
-import { today } from "./sampledata.js";
+import { forecast, today } from "./sampledata.js";
 
 function App() {
 
@@ -61,7 +64,7 @@ try {
           />
         </div>
         <div className="col-md-6 col-sm-12">
-          <FutureForecast/>
+          <FutureForecast forecast={forecast.list}/>
         </div>
       </div>
       <div className="row">
@@ -75,66 +78,6 @@ try {
 }
 
 export default App;
-
-function FutureForecast() {
-  return (
-    <div className="forecast card weather-card container-fluid">
-      <div className="row">
-        <div className="col-12" style={{color: "wheat", textAlign: "center", marginTop: "1em"}}>
-          <h2 className="header">Future Forecast</h2>
-        </div>
-      </div>
-      <div className='row d-flex align-items-center' style={{color: "wheat", textAlign: "center", marginTop: "1em", border: "solid", borderColor: "#003566", borderRadius: "45px"}}>
-          <div className='col-6' style={{textAlign: 'center', color: 'wheat'}}>
-            <h3>Sun 3:00 AM</h3> 
-          </div>
-          <div className='col-3' style={{textAlign: 'center', color: 'wheat'}}>
-            <h3>70°</h3>
-
-          </div>
-          <div className='col-3' style={{textAlign: 'center', color: 'wheat'}}>
-            <img src="https://openweathermap.org/img/wn/10d@2x.png" className="img-fluid" alt="..."></img>
-          </div>
-        </div>
-        <div className='row d-flex align-items-center' style={{color: "wheat", textAlign: "center", marginTop: "1em", border: "solid", borderColor: "#003566", borderRadius: "45px"}}>
-          <div className='col-6' style={{textAlign: 'center', color: 'wheat'}}>
-            <h3>Sun 3:00 AM</h3> 
-          </div>
-          <div className='col-3' style={{textAlign: 'center', color: 'wheat'}}>
-            <h3>70°</h3>
-
-          </div>
-          <div className='col-3' style={{textAlign: 'center', color: 'wheat'}}>
-            <img src="https://openweathermap.org/img/wn/10d@2x.png" className="img-fluid" alt="..."></img>
-          </div>
-        </div>
-        <div className='row d-flex align-items-center' style={{color: "wheat", textAlign: "center", marginTop: "1em", border: "solid", borderColor: "#003566", borderRadius: "45px"}}>
-          <div className='col-6' style={{textAlign: 'center', color: 'wheat'}}>
-            <h3>Sun 3:00 AM</h3> 
-          </div>
-          <div className='col-3' style={{textAlign: 'center', color: 'wheat'}}>
-            <h3>70°</h3>
-
-          </div>
-          <div className='col-3' style={{textAlign: 'center', color: 'wheat'}}>
-            <img src="https://openweathermap.org/img/wn/10d@2x.png" className="img-fluid" alt="..."></img>
-          </div>
-        </div>
-        <div className='row d-flex align-items-center' style={{color: "wheat", textAlign: "center", marginTop: "1em", border: "solid", borderColor: "#003566", borderRadius: "45px"}}>
-          <div className='col-6' style={{textAlign: 'center', color: 'wheat'}}>
-            <h3>Sun 3:00 AM</h3> 
-          </div>
-          <div className='col-3' style={{textAlign: 'center', color: 'wheat'}}>
-            <h3>70°</h3>
-
-          </div>
-          <div className='col-3' style={{textAlign: 'center', color: 'wheat'}}>
-            <img src="https://openweathermap.org/img/wn/10d@2x.png" className="img-fluid" alt="..."></img>
-          </div>
-        </div>
-    </div>
-  );
-}
 
 function FooterBar() {
   return (

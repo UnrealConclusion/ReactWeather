@@ -80,8 +80,32 @@
     width: 100%;
 }
 
+.forecast-row:hover {
+    background-color: #003566;
+    border: solid;
+    border-color: #000814;
+    border-radius: 30px;
+}
+
+.forecast-row:active {
+    background-color: #004280;
+    color: #ffc300;
+}
+
+.forecast-button:hover {
+    background-color: #003566;
+}
+
+.forecast-button:active {
+    background-color: #004280;
+}
+
+.forecast-button:active svg{
+    fill: #ffc300;
+}
+
 .footerbar {
-    background-color: #001D3D;
+    background-color: #001d3d;
     width: 100%;
     height: 8vh;
 }

@@ -92,6 +92,14 @@
     color: #ffc300;
 }
 
+.forecast-row-selected {
+    background-color: #004280;
+    color: #ffc300;
+    border: solid;
+    border-radius: 30px;
+    border-color: #000814;
+}
+
 .forecast-button:hover {
     background-color: #003566;
 }

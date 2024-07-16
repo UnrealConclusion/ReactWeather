@@ -6,37 +6,21 @@ import NavBar from './navbar';
 import CurrentWeather from './current_weather.js';
 import FutureForecast from './future_forecast.js';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { forecast, today } from "./sampledata.js";
 
 function App() {
+  const [selectedForecast, setSelectedForecast ] = useState(null); // index of selected forecast 
+  const [currentWeather, setCurrentWeather] = useState(today); // the current weather 
 
-  /*
-  useEffect(
-    function() {
-      async function fetchData(){
-        const url = 'https://open-weather13.p.rapidapi.com/city/fivedaysforcast/30.438/-89.1028';
-        const options = {
-          method: 'GET',
-          headers: {
-            'x-rapidapi-key': 'c13944f5femsh96e7020dbc2d32ap116312jsn0ed83e2b5093',
-            'x-rapidapi-host': 'open-weather13.p.rapidapi.com'
-          }
-};
+  const displayWeather = selectedForecast === null ? currentWeather : forecast.list[selectedForecast]; // what is on display
 
-try {
-	const response = await fetch(url, options);
-	const result = await response.text();
-	console.log(result);
-} catch (error) {
-	console.error(error);
-}
-      }
-      fetchData();
-    }
-  , []);
-*/
+  // unselect the forecast if clicked again, otherwise select the new forecast
+  function handleSelectForecast(i) {
+    setSelectedForecast((current) => current === i ? null : i);
+  }
+
   return (
     <div className="container-fluid background" style={{margin: "0"}}>
       <div className="row">
@@ -50,21 +34,25 @@ try {
       <div className="row card-row">
         <div className="col-md-6 col-sm-12">
           <CurrentWeather 
-            date={new Date(today.dt * 1000)}
-            weather={today.weather[0].main}
-            description={today.weather[0].description}
-            iconID={today.weather[0].icon}
-            temperature={Math.round(today.main.temp)}
-            low={Math.round(today.main.temp_min)}
-            high={Math.round(today.main.temp_max)}
-            feelsLike={Math.round(today.main.feels_like)}
-            humidity={today.main.humidity}
-            windSpeed={today.wind.speed}
-            visibility={today.visibility}
+            date={new Date(displayWeather.dt * 1000)}
+            weather={displayWeather.weather[0].main}
+            description={displayWeather.weather[0].description}
+            iconID={displayWeather.weather[0].icon}
+            temperature={Math.round(displayWeather.main.temp)}
+            low={Math.round(displayWeather.main.temp_min)}
+            high={Math.round(displayWeather.main.temp_max)}
+            feelsLike={Math.round(displayWeather.main.feels_like)}
+            humidity={displayWeather.main.humidity}
+            windSpeed={displayWeather.wind.speed}
+            visibility={displayWeather.visibility}
           />
         </div>
         <div className="col-md-6 col-sm-12">
-          <FutureForecast forecast={forecast.list}/>
+          <FutureForecast 
+            forecast={forecast.list}
+            selectedForecast={selectedForecast}
+            onSelectForecast={handleSelectForecast}
+          />
         </div>
       </div>
       <div className="row">

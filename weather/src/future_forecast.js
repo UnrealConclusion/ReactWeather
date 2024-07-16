@@ -3,7 +3,7 @@ import { useState } from "react";
 const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-export default function FutureForecast({forecast}) {
+export default function FutureForecast({forecast, selectedForecast, onSelectForecast}) {
     const [startIndex, setStartIndex ] = useState(0); // index of the first forecast to be displayed 
 
     // retrieve the 4 dates to be displayed at the moment 
@@ -12,17 +12,20 @@ export default function FutureForecast({forecast}) {
       dates.push(new Date(forecast[i].dt * 1000));
     }
 
+    // move the index back by 4 
     function handlePrevious() {
       if (startIndex > 0) {
         setStartIndex((current) => current - 4);
       }
     }
+
+    // move the index up by 4
     function handleNext() {
       if (startIndex + 4 < forecast.length){
         setStartIndex((current) => current + 4);
       }
     }
-
+  
     return (
       <div className="container-fluid card forecast-card">
         <div className="row">
@@ -33,7 +36,9 @@ export default function FutureForecast({forecast}) {
 
         {
           dates.map((date, i) => 
-            <div className={i === 3 ? "row forecast-row forecast-card-last-row" : "row forecast-row"}>
+            <div className={i === 3 ? (selectedForecast === i ? "row forecast-row forecast-card-last-row forecast-row-selected" : "row forecast-row forecast-card-last-row") : (selectedForecast === i ? "row forecast-row forecast-row-selected" : "row forecast-row")} 
+              key={i} 
+              onClick={() => onSelectForecast(i)}>
               <div className="col-6 p-2">  
                 <h3>
                   {weekdays[date.getDay()]} 

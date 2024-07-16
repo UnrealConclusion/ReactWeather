@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 
 import { forecast, today } from "./sampledata.js";
 
+
 function App() {
   const [selectedForecast, setSelectedForecast ] = useState(null); // index of selected forecast 
   const [currentWeather, setCurrentWeather] = useState(today); // the current weather 
@@ -22,7 +23,7 @@ function App() {
   }
 
   return (
-    <div className="container-fluid background" style={{margin: "0"}}>
+    <div className="container-fluid background">
       <div className="row">
         <div className="col-12 px-0">
           <Banner/>

@@ -17,69 +17,106 @@
     max-height: 8vh;
 }
 
+/* weather card */
 .weather-card {
     background-color: #001D3D;
 
     margin-top: 1em;
     margin-bottom: 1em;
 
-    display: flex;
-    justify-content: center;
-    overflow: auto;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    align-content: center;
+    row-gap: 30px;
 
-    min-width: 400px;
-    width: 100%;
+    min-width: 600px;
+    min-height: 700px;
     height: 80vh;
 
     color: wheat;
     text-align: center;
+
+    padding: 30px;
+}
+
+.weather-card img {
+    margin: auto;
 }
 
 .weather-card h1 {
     font-size: 5em;
+    align-self: center;
+    margin-bottom: 0;
+}
+.weather-card h2 {
+    align-self: center;
+    margin-bottom: 0;
+}
+.weather-card h3 {
+    align-self: center;
+    margin-bottom: 0;
+}
+
+.weather-card-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.high-and-low {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 .description-box {
     border: solid;
     border-radius: 25px;
     border-color: #003566;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding: 10px;
 }
+/* -------------------------------------------------- */
 
+/* forecast card */
 .forecast-card {
     background-color: #001D3D;
 
     margin-top: 1em;
     margin-bottom: 1em;
+    padding: 40px 40px 0 40px;
 
-    display: flex;
-    justify-content: center;
-    overflow: auto;
+    display: grid;
+    grid-template-rows: 0.5fr 1fr 1fr 1fr 1fr 0.5fr;
+    row-gap: 1em;
     
-    min-width: 400px;
-    width: 100%;
+    min-width: 600px;
+    min-height: 700px;
     height: 80vh;
 
     color: wheat;
     text-align: center;
 }
 
+.forecast-card h1 {
+    font-size: 2em;
+}
+
 .forecast-card h3 {
     font-size: 1.5em;
 }
 
-.forecast-card-last-row {
-    margin-bottom: 1.5em;
+.forecast-button-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
-
-.forecast-card-button-row {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+.forecast-row {
+    display: grid;
+    grid-template-columns: 3fr 1fr 2fr;
+    align-items: center;
 }
 
+.forecast-card img {
+    margin: auto;
+}
 .forecast-row:hover {
     background-color: #003566;
     border: solid;
@@ -111,6 +148,7 @@
 .forecast-button:active svg{
     fill: #ffc300;
 }
+/* -------------------------------------------------- */
 
 .footerbar {
     background-color: #001d3d;
@@ -118,7 +156,4 @@
     height: 8vh;
 }
 
-/* Media Queries */
-@media (max-width: 768px) {
-
-}
+  

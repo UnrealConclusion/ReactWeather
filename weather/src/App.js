@@ -24,12 +24,7 @@ function App() {
   else {
     currentDetails = currentForecast;
   }
-  if (currentDetails === null){
-    return <div>
-
-    </div>
-  }
-
+  
   console.log(currentDetails)
 
   /**

@@ -9,12 +9,17 @@
     height: 2vh;
 }
 
+/* navbar */
 .navbar {
     background-color: #001D3D;
     min-width: 300px;
     width: 100%;
     min-height: 4em;
     max-height: 8vh;
+}
+
+.navbar a {
+    color: wheat;
 }
 
 /* weather card */
@@ -81,7 +86,7 @@
 
     margin-top: 1em;
     margin-bottom: 1em;
-    padding: 40px 40px 0 40px;
+    padding-top: 40px;
 
     display: grid;
     grid-template-rows: 0.5fr 1fr 1fr 1fr 1fr 0.5fr;
@@ -111,6 +116,8 @@
 .forecast-row {
     display: grid;
     grid-template-columns: 3fr 1fr 2fr;
+    padding-left: 40px;
+    padding-right: 40px;
     align-items: center;
 }
 
@@ -156,4 +163,30 @@
     height: 8vh;
 }
 
-  
+/* -------------------------------------------------- */
+.error-alert {
+    position: absolute;
+    z-index: 10;
+    width: 50vw;
+    background-color: #222E50;
+    color: red;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    display: none;
+}
+
+/* error message */
+.show-error {
+    display: initial;
+}
+
+.close-error-button {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    text-align: center;
+    border-radius: 50%;
+}

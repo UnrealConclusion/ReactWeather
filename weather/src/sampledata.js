@@ -44,7 +44,7 @@ const today = {
     "cod":200
 };
 
-const forecast = {
+const futureForecast = {
     "cod": "200",
     "message": 0,
     "cnt": 40,
@@ -1538,4 +1538,4 @@ const forecast = {
     }
   }
 
-export {today, forecast};
+export {today, futureForecast};

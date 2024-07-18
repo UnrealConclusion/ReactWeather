@@ -113,7 +113,7 @@ function App() {
     const options = {
       method: 'GET',
       headers: {
-        'x-rapidapi-key': '103402c4e2msh16dc01544c21618p1b55a8jsn3d07279865ce',
+        'x-rapidapi-key': apiKey,
         'x-rapidapi-host': 'map-geocoding.p.rapidapi.com'
       }
     };

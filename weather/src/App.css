@@ -15,12 +15,12 @@
 .container {
     display: flex;
     justify-content: space-evenly;
-    row-gap: 20px;
+    gap: 20px;
     flex-wrap: wrap;
     margin: 40px;
 }
 
-/* Weather Detail Card */
+/* Weather Details Card */
 .weather-details-card .header-row {
     display: grid;
     grid-template-rows: 1fr 1fr;
@@ -64,9 +64,6 @@
 }
 
 /* Weather Forecast Card */ 
-.weather-forecasts-card {
-    min-width: 400px;
-}
 .weather-forecasts-card .header-row {
     text-align: center;
 }
@@ -123,4 +120,19 @@
 
 .forecast-button:active svg{
     fill: #6c757d;;
+}
+
+/* Footer */
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #2b3036; /* Dark background color */
+    color: #ffffff; /* Light text color */
+    text-align: center;
+    padding: 10px 0;
+}
+
+.footer p {
+    margin-bottom: 0;
 }

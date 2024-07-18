@@ -1,5 +1,5 @@
 import "./App.css"
-import {Fragment, useState, useEffect } from "react";
+import {Fragment, useState, useEffect} from "react";
 
 /* Import Bootstrap CSS & Components*/
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -9,17 +9,21 @@ import ErrorAlert from "./error_alert";
 import NavBar from "./navbar";
 import WeatherDetails from "./weather_details";
 import WeatherForecasts from "./weather_forecasts";
+import Footer from "./footer";
 
-import {today, futureForecast} from "./sampledata";
+import {dummy} from "./dummy_data";
+const apiKey = process.env.REACT_APP_API_KEY;
+
 
 function App() {
   const [errorMSG, setErrorMSG] = useState(""); // error message to be displayed in alert
   const [showErrorMSG, setShowErrorMSG] = useState(false); // toggle error alert window
+  const [isLoading, setIsLoading] = useState(true);
 
   const [location, setLocation] = useState(null); // the current location 
 
-  const [currentForecast, setCurrentForecast] = useState(today); // the current weather forecast at the current location 
-  const [forecasts, setForecasts] = useState(futureForecast.list); // list of weather forecast at the current location
+  const [currentForecast, setCurrentForecast] = useState(dummy.currentForecast); // the current weather forecast at the current location 
+  const [forecasts, setForecasts] = useState(dummy.forecasts); // list of weather forecast at the current location
   const [selectedForecast, setSelectedForecast] = useState(null); // the current forecast detials selected to be display
 
   const [zipcodeInput, setZipcodeInput] = useState("");
@@ -28,29 +32,31 @@ function App() {
 
   /* Fetches Weather Every Time Location Changes */
   useEffect(function() {
+
     const currentForecastController = new AbortController();
     const futureForecastController = new AbortController();
 
     // calls api to fetch weather at current location 
     async function fetchWeather() {
+      setIsLoading(true);
 
       // call for current weather
-      const currentForecastUrl = `https://open-weather13.p.rapidapi.com/city/latlon/${location.lat}/${location.lng}`;
+      const currentForecastUrl = `https://open-weather13.p.rapidapi.com/city/latlon/${location.latitude}/${location.longitude}`;
       const currentForecastOptions = {
         method: 'GET',
         headers: {
-          'x-rapidapi-key': '103402c4e2msh16dc01544c21618p1b55a8jsn3d07279865ce',
+          'x-rapidapi-key': apiKey,
           'x-rapidapi-host': 'open-weather13.p.rapidapi.com'
         }, 
         signal: currentForecastController.signal
       };
 
       // call for future forecasts
-      const futureForecastUrl = 'https://open-weather13.p.rapidapi.com/city/fivedaysforcast/30.438/-89.1028';
+      const futureForecastUrl = `https://open-weather13.p.rapidapi.com/city/fivedaysforcast/${location.latitude}/${location.longitude}`;
       const futureForecastOptions = {
         method: 'GET',
         headers: {
-          'x-rapidapi-key': '103402c4e2msh16dc01544c21618p1b55a8jsn3d07279865ce',
+          'x-rapidapi-key': apiKey,
           'x-rapidapi-host': 'open-weather13.p.rapidapi.com'
         },
         signal: futureForecastController.signal
@@ -58,6 +64,7 @@ function App() {
 
     try {
       const currentForecastResponse = await fetch(currentForecastUrl, currentForecastOptions);
+
       if (!currentForecastResponse.ok){
         throw new Error("Unable to Fetch Weather");
       }
@@ -67,26 +74,33 @@ function App() {
       if (!futureForecastResponse.ok){
         throw new Error("Unable to Fetch Forecast");
       }
+
       const futureForecastResult = await futureForecastResponse.json();
 
       setCurrentForecast(currentForecastResult);
       setForecasts(futureForecastResult.list);
       setErrorMSG("");
       setShowErrorMSG(false)
+      setIsLoading(false);
     } catch (error) {
       setErrorMSG(error.message);
-      setShowErrorMSG(false)
+      setShowErrorMSG(true)
     }
   }
 
-    if (location){
+    if (location == null){
+      setLocation(dummy.location);
+      setIsLoading(false);
+    }
+    else {
       fetchWeather();
     }
+
     return () => {
       currentForecastController.abort();
       futureForecastController.abort();
     };
-  }, [location]);
+  }, [location, isLoading]);
 
   /* API Calls */
 
@@ -109,11 +123,16 @@ function App() {
       const result = await response.json();
   
       if (result.status !== "OK") {
-        // console.log(result);
         throw new Error("Zipcode Not Found");
       }
 
-      setLocation(result.results[0].geometry.location);
+      let loc = {
+        latitude: result.results[0].geometry.location.lat, 
+        longitude: result.results[0].geometry.location.lng,
+        location: result.results[0].formatted_address
+      }
+
+      setLocation(loc);
       setErrorMSG("");
       setShowErrorMSG(false);
     } catch (error) {
@@ -195,13 +214,18 @@ function App() {
             humidity={currentDetails.main.humidity}
             windSpeed={currentDetails.wind.speed}
             visibility={currentDetails.visibility}
+            isLoading={isLoading}
         />
         <WeatherForecasts
           forecasts={forecasts}
           selectedForecast={selectedForecast}
           onSelectForecast={handleSelectForecast}
+          isLoading={isLoading}
         />
       </div>
+      <Footer
+        location={location?.location}
+      />
     </Fragment>
   );
 }

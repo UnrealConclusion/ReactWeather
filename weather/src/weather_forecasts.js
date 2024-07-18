@@ -1,17 +1,23 @@
 import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import Nav from 'react-bootstrap/Nav';
+import {Card, Spinner} from 'react-bootstrap';
 
 /**
  * Component used to display a list of weather forecasts
  */
-
 const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-export default function WeatherForecasts({forecasts, selectedForecast, onSelectForecast}) {
+export default function WeatherForecasts({forecasts, selectedForecast, onSelectForecast, isLoading}) {
     const [startIndex, setStartIndex ] = useState(0); // index of the first forecast to be displayed 
+
+    if (isLoading) {
+      return (
+        <Card className='weather-details-card' style={{minWidth: "500px", minHeight: "600px", display: "flex", flexGrow: "1", justifyContent: "center", alignItems: "center"}}  bg="dark" data-bs-theme="dark">
+          <Spinner/>
+        </Card>
+      );
+    }
+
 
     // retrieve the 4 dates to be displayed at the moment 
     const dates = []
@@ -34,7 +40,7 @@ export default function WeatherForecasts({forecasts, selectedForecast, onSelectF
     }
 
     return (
-        <Card className='weather-forecasts-card' style={{minWidth: "500px"}}  bg="dark" data-bs-theme="dark">
+        <Card className='weather-forecasts-card' style={{minWidth: "500px", minHeight: "500px"}}  bg="dark" data-bs-theme="dark">
           <Card.Header>
             <div className='header-row'>
               <h2>🔮 Future Forecast 🔮</h2>

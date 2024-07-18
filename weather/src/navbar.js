@@ -1,9 +1,9 @@
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import {Button, Container, Form, Nav, Navbar} from 'react-bootstrap';
 
+/**
+ * Navbar component
+ * Also used to set location 
+ */
 export default function NavBar({zipcodeInput, onZipcodeInput, onLocate}) {
   return (
     <Navbar expand="lg" className="bg-body-tertiary"  bg="dark" data-bs-theme="dark">
@@ -11,7 +11,7 @@ export default function NavBar({zipcodeInput, onZipcodeInput, onLocate}) {
         <Navbar.Brand href="#" >React Weather</Navbar.Brand>
         <Nav
           className="me-auto my-2 my-lg-0"
-          style={{ maxHeight: '100px'}}
+          style={{ maxHeight: '100px', color: "white"}}
           navbarScroll
         />
         <Form className="d-flex">

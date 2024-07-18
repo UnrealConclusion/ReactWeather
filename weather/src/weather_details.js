@@ -1,15 +1,23 @@
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import Nav from 'react-bootstrap/Nav';
+import {Card, Spinner} from 'react-bootstrap';
 
 /**
  * Component used to display weather details
  */
-
 const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-export default function WeatherDetails({date, weather, description, iconID, temperature, low, high, feelsLike, humidity, windSpeed, visibility}) {
+/**
+ * Component used to display the details of a weather forecast
+ */
+export default function WeatherDetails({date, weather, description, iconID, temperature, low, high, feelsLike, humidity, windSpeed, visibility, isLoading}) {
+  if (isLoading) {
+    return (
+      <Card className='weather-details-card' style={{minWidth: "500px", minHeight: "600px", display: "flex", flexGrow: "1", justifyContent: "center", alignItems: "center"}}  bg="dark" data-bs-theme="dark">
+        <Spinner/>
+      </Card>
+    );
+  }
+  
   return (
     <Card className='weather-details-card' style={{minWidth: "500px"}}  bg="dark" data-bs-theme="dark">
       <Card.Header className='header-row'>
@@ -24,6 +32,7 @@ export default function WeatherDetails({date, weather, description, iconID, temp
             </div>
         </Card.Title>
         <div className="details-row">
+            <h3>{description}</h3>
             <div className="high-and-low">
                 <h3>👇 Low: {low}°</h3>
                 <h3>☝️ High: {high}°</h3>

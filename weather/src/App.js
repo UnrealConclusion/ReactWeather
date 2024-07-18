@@ -89,7 +89,7 @@ function App() {
   }
 
     if (location == null){
-      setLocation(dummy.location);
+      // setLocation(dummy.location);
       setIsLoading(false);
     }
     else {
@@ -224,7 +224,7 @@ function App() {
         />
       </div>
       <Footer
-        location={location?.location}
+        location={location ? location?.location : dummy.location.location}
       />
     </Fragment>
   );

@@ -7,7 +7,7 @@ const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Frida
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 /**
- * Component used to display the details of a weather forecast
+ * Component used to display the details of a forecast
  */
 export default function WeatherDetails({date, weather, description, iconID, temperature, low, high, feelsLike, humidity, windSpeed, visibility, isLoading}) {
   if (isLoading) {

@@ -1,2 +1,5 @@
 # ReactWeather
-Weather App made using ReactJs and Rapid API
+Weather App made using ReactJs
+
+## APIs Used
+Open Weather 

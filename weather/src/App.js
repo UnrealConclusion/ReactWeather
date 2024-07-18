@@ -12,7 +12,7 @@ import WeatherForecasts from "./weather_forecasts";
 import Footer from "./footer";
 
 import {dummy} from "./dummy_data";
-const apiKey = process.env.REACT_APP_API_KEY;
+const apiKey = process.env.RAPID_API_KEY;
 
 
 function App() {
